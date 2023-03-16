@@ -1,0 +1,62 @@
+<form
+  class="w-96 flex gap-4 flex-col bg-white rounded-3xl p-6 shadow-xl shadow-blue-100"
+>
+  <h2 class="text-lg">
+    Welcome <span class="font-semibold text-blue-600">{{ name() }}</span
+    >!
+  </h2>
+  <input
+    type="text"
+    placeholder="Enter your name"
+    class="p-3 px-6 rounded-3xl w-full focus:outline-none border-2"
+    name="fullName"
+    ngModel
+    #fullName="ngModel"
+    (keyup.enter)="onNameChange(fullName)"
+  />
+
+  <input
+    type="text"
+    placeholder="Enter your teammate name"
+    class="p-3 px-6 rounded-3xl w-full focus:outline-none border-2"
+    name="teammate"
+    ngModel
+    #teammate="ngModel"
+    (keyup.enter)="onTeammateAdd(teammate)"
+  />
+
+  <div>
+    <h3 class="font-semibold">Teammates:</h3>
+
+    <ul class="list-disc ml-6">
+      <li *ngFor="let teammate of teammates()">{{ teammate }}</li>
+    </ul>
+
+    <p class="text-sm mt-1 ml-3">
+      The longest name in your teammates is:
+      <span class="font-semibold">{{ teammates() | longestName }}</span>
+    </p>
+  </div>
+
+  <div>
+    <input
+      type="text"
+      placeholder="Enter your age"
+      class="p-3 px-6 rounded-3xl w-full focus:outline-none border-2"
+      name="age"
+      ngModel
+      #age="ngModel"
+      (ngModelChange)="onAgeChange(age)"
+    />
+    <p class="text-sm mt-1 ml-3">
+      You were born in: <span class="font-semibold">{{ ageOfBirth() }}</span>
+    </p>
+  </div>
+
+  <button
+    class="bg-blue-500 p-2 rounded-3xl mt-5 text-white font-semibold"
+    type="submit"
+  >
+    + Create team
+  </button>
+</form>
